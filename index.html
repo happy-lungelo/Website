@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Velvet Touch Salon</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    :root {
+      --primary: #ff4f81;
+      --secondary: #111;
+      --light: #f8f8f8;
+      --white: #ffffff;
+      --gray: #777;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      width: 100%;
+      padding: 20px 0;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      background: #ffffff;
+      backdrop-filter: none;
+      border-bottom: 1px solid #eee;
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 30px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .btn {
+      background: var(--primary);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 999px;
+      display: inline-block;
+      transition: 0.3s ease;
+      font-weight: 500;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+        url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1400&q=80') center/cover;
+      color: white;
+      text-align: center;
+      padding: 120px 20px 80px;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      border: 1px solid white;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 999px;
+      transition: 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: black;
+    }
+
+    /* SECTION */
+
+    section {
+      padding: 90px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: var(--gray);
+    }
+
+    /* SERVICES */
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .service-card {
+      background: var(--white);
+      padding: 30px;
+      border-radius: 24px;
+      border: 1px solid #eee;
+      transition: 0.3s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .service-card h3 {
+      margin: 15px 0;
+      font-size: 22px;
+    }
+
+    .service-card p {
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    .service-icon {
+      font-size: 40px;
+    }
+
+    /* GALLERY */
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-grid img {
+      height: 320px;
+      object-fit: cover;
+      border-radius: 24px;
+      transition: 0.3s ease;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.02);
+    }
+
+    /* ABOUT */
+
+    .about {
+      background: var(--light);
+    }
+
+    .about-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-image img {
+      border-radius: 30px;
+      height: 500px;
+      object-fit: cover;
+    }
+
+    .about-text h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+
+    /* TESTIMONIALS */
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .testimonial {
+      background: white;
+      border: 1px solid #eee;
+      padding: 30px;
+      border-radius: 24px;
+    }
+
+    .testimonial p {
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+
+    .testimonial h4 {
+      font-size: 16px;
+    }
+
+    /* CTA */
+
+    .cta {
+      background: var(--secondary);
+      color: white;
+      text-align: center;
+      border-radius: 32px;
+      padding: 70px 30px;
+    }
+
+    .cta h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    .cta p {
+      max-width: 600px;
+      margin: auto;
+      margin-bottom: 30px;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #000;
+      color: white;
+      padding: 40px 0;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 15px;
+    }
+
+    .footer-socials a {
+      color: rgba(255,255,255,0.8);
+      transition: 0.3s;
+    }
+
+    .footer-socials a:hover {
+      color: var(--primary);
+    }
+
+    
+
+    /* MINI BOOK BUTTON */
+
+    .mini-book-btn {
+      background: #111;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      margin-left: 10px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+/* WHATSAPP BUTTON */
+
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      z-index: 999;
+    }
+
+/* RESPONSIVE */
+
+    @media (max-width: 768px) {
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 80px;
+        right: 5%;
+        background: white;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 220px;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .section-title h2,
+      .about-text h2,
+      .cta h2 {
+        font-size: 32px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+    <div class="container nav-content">
+      <div class="logo">Happy L Salon</div>
+
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+      <div class="nav-links" id="mobileMenu">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#footer">Socials</a>
+        <a class="btn" href="https://wa.me/27831234567">Book Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Luxury Hair & Beauty Salon Experience</h1>
+
+      <p>
+        Professional salon services including hairstyling, braids, installs, treatments, makeup, nails, and premium beauty care.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="https://wa.me/27831234567" class="btn">Book Your Appointment</a>
+        <a href="#services" class="btn-secondary">View Our Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+
+  <section id="services">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Salon Services</h2>
+        <p>Everything you need to look and feel your best.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card">
+          <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=80" alt="Hair Styling" style="height:400px; object-fit:cover; border-radius:18px; margin-bottom:20px;">
+          
+          <h3>Hair Styling</h3>
+          <p>
+            Braids .......... R250<br>
+            Installs ........ R700<br>
+            Treatments ...... R500<br>
+            Wig Styling ..... R350
+          </p>
+          <br>
+
+          <a href="https://wa.me/27831234567" class="mini-book-btn">Book Now</a>
+        </div>
+
+        <div class="service-card">
+          <img src="https://images.unsplash.com/photo-1519415943484-9fa1873496d4?auto=format&fit=crop&w=900&q=80" alt="Hair Treatment" style="height:400px; object-fit:cover; border-radius:18px; margin-bottom:20px;">
+          
+          <h3>Hair Treatments</h3>
+          <p>
+            Deep Conditioning ... R300<br>
+            Hair Repair ......... R450<br>
+            Scalp Treatment ..... R250
+          </p>
+           <br>
+
+          <a href="https://wa.me/27831234567" class="mini-book-btn">Book Now</a>
+        </div>
+
+        <div class="service-card">
+          <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=80" alt="Nails" style="height:400px; object-fit:cover; border-radius:18px; margin-bottom:20px;">
+          
+          <h3>Nails & Beauty</h3>
+          <p>
+            Gel Nails .......... R250<br>
+            Pedicure ........... R200<br>
+            Lash Extensions .... R400
+          </p>
+           <br>
+
+          <a href="https://wa.me/27831234567" class="mini-book-btn">Book Now</a>
+        </div>
+
+        <div class="service-card">
+          <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80" alt="Makeup" style="height:400px; object-fit:cover; border-radius:18px; margin-bottom:20px;">
+          
+          <h3>Makeup & Glam</h3>
+          <p>
+            Soft Glam .......... R450<br>
+            Full Glam .......... R650<br>
+            Bridal Makeup ...... R1200
+          </p>
+          <br>
+
+          <a href="https://wa.me/27831234567" class="mini-book-btn">Book Now</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+
+  <section class="about" id="about">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>About Our Salon</h2>
+        <p>Luxury salon services designed to make you look and feel your best.</p>
+      </div>
+
+      <div class="about-wrapper">
+
+      <div class="about-image">
+        
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1000&q=80" alt="About">
+      </div>
+        
+
+      <div class="about-text">
+
+        <p>
+          Happy L Salon is a modern beauty destination focused on helping clients feel confident, elegant, and refreshed.
+        </p>
+
+        <p>
+          Our salon specializes in luxury haircare, protective styling, makeup artistry, and beauty treatments in a welcoming environment.
+        </p>
+
+        <h3 style="margin-bottom: 15px;">Location</h3>
+
+        <p><strong>Province:</strong> Gauteng </p>
+        <p><strong>Address:</strong> Kempton Park, Birch Acres 4557 </p>
+
+        <br>
+
+        <h3 style="margin-bottom: 15px;">Business Hours</h3>
+
+        <p>Monday – Friday: 8AM – 6PM</p>
+        <p>Saturday: 8AM – 4PM</p>
+        <p>Sunday: Closed</p>
+
+        <br>
+
+        <a href="https://wa.me/27831234567" class="btn">Book Now</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+
+  <section id="gallery">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Gallery</h2>
+        <p>Showcase your work beautifully.</p>
+      </div>
+
+      <div class="gallery-grid">
+
+        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=900&q=80" alt="Beauty">
+
+        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80" alt="Hair">
+
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80" alt="Fashion">
+
+        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80" alt="Style">
+
+      </div>
+    </div>
+  </section>
+
+    
+
+  <!-- CTA -->
+
+  <section>
+    <div class="container">
+      <div class="cta">
+
+        <h2>Ready For Your Next Glow-Up?</h2>
+
+        <p>
+          Book your next appointment and experience premium salon services designed to make you look and feel amazing.
+        </p>
+
+        <a href="https://wa.me/27831234567" class="btn">
+          Book Now
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+    <!-- FOOTER -->
+
+  <footer id="footer">
+    <div class="container footer-content">
+
+      <div>
+        <h3>Happy L Salon</h3>
+        
+      </div>
+
+      <div class="footer-socials">
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">WhatsApp</a>
+      </div>
+
+    </div>
+    <div style="margin-top:40px; text-align:center; font-size:14px; opacity:0.8;">
+       Website created by 
+        <a href="https://instagram.com" target="_blank" style="font-weight:700;">
+          Click here.
+        </a> 
+      <br><br>
+      © 2026 Happy L Salon. All Rights Reserved.
+        
+      </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT BUTTON -->
+
+  <a href="https://wa.me/27831234567" class="whatsapp-btn">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width:32px; height:32px;">
+  </a>
+
+  
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('active');
+    }
+
+    const navLinks = document.querySelectorAll('#mobileMenu a');
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.remove('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
